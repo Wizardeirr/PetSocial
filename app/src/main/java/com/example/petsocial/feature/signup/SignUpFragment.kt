@@ -6,14 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.petsocial.R
+import com.example.petsocial.common.BaseViewBindingFragment
+import com.example.petsocial.databinding.FragmentSignInBinding
+import com.example.petsocial.databinding.FragmentSignUpBinding
 
-class SignUpFragment : Fragment() {
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_up, container, false)
+class SignUpFragment : BaseViewBindingFragment<FragmentSignUpBinding>() {
+    override fun inflateBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentSignUpBinding {
+        return FragmentSignUpBinding.inflate(inflater,container,false)
     }
 }

@@ -5,12 +5,12 @@
     android:id="@+id/loginScreenConstraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".loginandsign.MainFragment">
+    tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/userLog"
-        android:layout_width="372dp"
-        android:layout_height="46dp"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Username"
@@ -22,8 +22,8 @@
 
     <EditText
         android:id="@+id/passwordLog"
-        android:layout_width="372dp"
-        android:layout_height="45dp"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Password"
