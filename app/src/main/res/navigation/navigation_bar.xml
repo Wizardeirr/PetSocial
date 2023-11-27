@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_bar"
-    app:startDestination="@id/signInFragment2">
+    app:startDestination="@id/signInFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -12,7 +12,13 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_signInFragment2"
-            app:destination="@id/signInFragment2" />
+            app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_homeFragment_self"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_privateMessageFragment"
+            app:destination="@id/privateMessageFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -21,18 +27,23 @@
         tools:layout="@layout/fragment_sign_up" >
         <action
             android:id="@+id/action_signUpFragment_to_signInFragment2"
-            app:destination="@id/signInFragment2" />
+            app:destination="@id/signInFragment" />
     </fragment>
     <fragment
-        android:id="@+id/signInFragment2"
+        android:id="@+id/signInFragment"
         android:name="com.example.petsocial.feature.signin.SignInFragment"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
         <action
-            android:id="@+id/action_signInFragment2_to_homeFragment"
+            android:id="@+id/action_signInFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
         <action
-            android:id="@+id/action_signInFragment2_to_signUpFragment"
+            android:id="@+id/action_signInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/privateMessageFragment"
+        android:name="com.example.petsocial.PrivateMessageFragment"
+        android:label="fragment_private_message"
+        tools:layout="@layout/fragment_private_message" />
 </navigation>
