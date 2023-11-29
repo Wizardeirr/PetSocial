@@ -16,9 +16,7 @@
         <action
             android:id="@+id/action_homeFragment_self"
             app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_privateMessageFragment"
-            app:destination="@id/privateMessageFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -41,9 +39,5 @@
             android:id="@+id/action_signInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/privateMessageFragment"
-        android:name="com.example.petsocial.PrivateMessageFragment"
-        android:label="fragment_private_message"
-        tools:layout="@layout/fragment_private_message" />
+
 </navigation>

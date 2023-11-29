@@ -12,11 +12,9 @@
         android:layout_width="372dp"
         android:layout_height="46dp"
         android:layout_marginTop="36dp"
-        android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signImageView" />
 
@@ -24,25 +22,21 @@
         android:id="@+id/passwordSign"
         android:layout_width="372dp"
         android:layout_height="45dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
+        android:layout_marginTop="6dp"
         android:hint="Password(min 6 character)"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userSign" />
 
     <EditText
         android:id="@+id/userSign"
         android:layout_width="372dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
+        android:layout_height="45dp"
+        android:layout_marginTop="6dp"
         android:hint="E-mail"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userNameET" />
 
@@ -50,21 +44,17 @@
         android:id="@+id/signUpButton"
         android:layout_width="371dp"
         android:layout_height="53dp"
-        android:layout_marginTop="16dp"
         android:text="SIGN UP"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/petName" />
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="408dp" />
 
     <EditText
         android:id="@+id/petName"
         android:layout_width="372dp"
         android:layout_height="45dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
+        android:layout_marginTop="6dp"
         android:hint="Your Pet Name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordSign" />
 
@@ -76,7 +66,6 @@
         android:text="For Your Pet's Social Life"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
 
@@ -89,19 +78,17 @@
         app:civ_border_color="#FF000000"
         app:civ_border_width="2dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/selectPhotoFAB"
+    <ProgressBar
+        android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="128dp"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        android:src="@drawable/add_photo_icon"
-        app:layout_constraintBottom_toTopOf="@+id/userNameET"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
