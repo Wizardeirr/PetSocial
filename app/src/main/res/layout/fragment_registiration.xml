@@ -12,22 +12,12 @@
         android:layout_width="372dp"
         android:layout_height="46dp"
         android:layout_marginTop="36dp"
-        android:hint="Username"
+        android:hint="@string/username"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signImageView" />
-
-    <EditText
-        android:id="@+id/passwordSign"
-        android:layout_width="372dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="6dp"
-        android:hint="Password(min 6 character)"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userSign" />
+        app:layout_constraintTop_toBottomOf="@+id/signImageView"
+        android:autofillHints="name" />
 
     <EditText
         android:id="@+id/userSign"
@@ -38,32 +28,47 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNameET" />
+        app:layout_constraintTop_toBottomOf="@+id/userNameET"
+        tools:ignore="HardcodedText"
+        android:autofillHints="emailAddress"/>
+    <EditText
+        android:id="@+id/passwordSign"
+        android:layout_width="372dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="6dp"
+        android:hint="@string/password_min_6_character"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userSign"
+        />
 
-    <Button
-        android:id="@+id/signUpButton"
-        android:layout_width="371dp"
-        android:layout_height="53dp"
-        android:text="SIGN UP"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="408dp" />
 
     <EditText
         android:id="@+id/petName"
         android:layout_width="372dp"
         android:layout_height="45dp"
         android:layout_marginTop="6dp"
-        android:hint="Your Pet Name"
+        android:hint="@string/your_pet_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordSign" />
-
+        app:layout_constraintTop_toBottomOf="@+id/passwordSign"
+        android:importantForAutofill="no" />
+    <Button
+        android:id="@+id/signUpButton"
+        android:layout_width="371dp"
+        android:layout_height="53dp"
+        android:text="@string/sign_up"
+        android:layout_margin="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/petName" />
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:text="For Your Pet's Social Life"
+        android:text="@string/for_your_pet_s_social_life"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
