@@ -2,4 +2,9 @@
     <string name="app_name">PetSocial</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="username">Username</string>
+    <string name="password_min_6_character">Password(min 6 character)</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="your_pet_name">Your Pet Name</string>
+    <string name="for_your_pet_s_social_life">For Your Pet\'s Social Life</string>
 </resources>

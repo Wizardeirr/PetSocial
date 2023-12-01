@@ -2,40 +2,32 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/homeButton"
+        android:id="@+id/homeFragment"
         android:icon="@drawable/home_icon"
         android:title="Home"
         app:showAsAction="ifRoom">
 
     </item>
     <item
-        android:id="@+id/messageButton"
-        android:icon="@drawable/group_chat"
-        android:title="GroupMessage"
-        app:showAsAction="ifRoom">
-
-    </item>
-    <item
-        android:id="@+id/privateMessageButton"
+        android:id="@+id/messagesFragment"
         android:icon="@drawable/message_icon"
         android:title="Private Message"
         app:showAsAction="ifRoom">
 
     </item>
     <item
-        android:title="Profile"
-        android:id="@+id/profileButton"
-        android:icon="@drawable/profile_icon"
+        android:id="@+id/advertsFragment"
+        android:icon="@drawable/message_icon"
+        android:title="Adverts"
         app:showAsAction="ifRoom">
 
     </item>
-
-
     <item
-        android:id="@+id/logOutButton"
+        android:title="Profile"
+        android:id="@+id/profileFragment"
         android:icon="@drawable/profile_icon"
-        android:title="Log Out"
         app:showAsAction="ifRoom">
 
     </item>
+
 </menu>
