@@ -8,60 +8,117 @@
     tools:context=".feature.profile.ProfileFragment">
 
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profileImageView"
-        android:layout_width="123dp"
-        android:layout_height="127dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/logo"
-        app:civ_border_color="#FF000000"
-        app:civ_border_width="2dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/photo_constraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileImageView"
+            android:layout_width="123dp"
+            android:layout_height="127dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/logo"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/add_photo_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="204dp"
+            tools:layout_editor_absoluteY="102dp"
+
+            >
+
+        </ImageView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/profileImageView">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/photo_constraint">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="İsim">
+
+        </TextView>
 
         <EditText
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:enabled="false"
             android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"/>
+            android:layout_marginBottom="4dp"
+            android:hint="İsim ekle" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="E-Mail">
+
+        </TextView>
 
         <EditText
             android:id="@+id/userEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:enabled="false"
-            android:hint=""
             android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"/>
+            android:layout_marginBottom="4dp"
+            android:hint="E-mail ekle" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Evcil Hayvan İsmi">
+
+        </TextView>
 
         <EditText
             android:id="@+id/userPetName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Evcil Hayvanınızın ismini giriniz."
             android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"/>
+            android:layout_marginBottom="4dp"
+            android:hint="Evcil hayvanı ismi ekle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Doğum Tarihi">
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/birthday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:hint="Doğum tarihini ekle" />
 
         <Button
             android:id="@+id/updateInformation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/update"
             android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"/>
+            android:layout_marginBottom="4dp"
+            android:text="@string/update" />
 
     </LinearLayout>
 
