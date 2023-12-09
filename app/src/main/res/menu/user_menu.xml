@@ -17,7 +17,7 @@
     </item>
     <item
         android:id="@+id/advertsFragment"
-        android:icon="@drawable/message_icon"
+        android:icon="@drawable/adverts_icon"
         android:title="Adverts"
         app:showAsAction="ifRoom">
 
