@@ -43,7 +43,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.petsocial.feature.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_postFragment"
+            app:destination="@id/postFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.petsocial.feature.profile.ProfileFragment"
@@ -59,4 +63,8 @@
         android:name="com.example.petsocial.feature.advert.AdvertsFragment"
         android:label="fragment_adverts"
         tools:layout="@layout/fragment_adverts" />
+    <fragment
+        android:id="@+id/postFragment"
+        android:name="com.example.petsocial.feature.post.PostFragment"
+        android:label="PostFragment" />
 </navigation>
