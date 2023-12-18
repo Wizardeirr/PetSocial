@@ -10,6 +10,7 @@ data class UserInfo(
     var userEmail: String,
     var userName: String,
     var petName: String,
-    var userImage: String
+    var userImage: String,
+    var birthday:String
 
 )
