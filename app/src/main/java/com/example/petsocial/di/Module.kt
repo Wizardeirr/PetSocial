@@ -26,7 +26,10 @@ object Module {
 
     @Singleton
     @Provides
-    fun injectRoomDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(context, UserDatabase::class.java, "users").allowMainThreadQueries().build()
+    fun injectRoomDatabase(@ApplicationContext context: Context) =
+        Room.databaseBuilder(context, UserDatabase::class.java, "users")
+            .allowMainThreadQueries()
+            .build()
 
     @Singleton
     @Provides
