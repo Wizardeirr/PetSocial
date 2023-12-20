@@ -9,8 +9,9 @@
 
     <EditText
         android:id="@+id/userNameET"
-        android:layout_width="372dp"
-        android:layout_height="46dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
         android:layout_marginTop="36dp"
         android:hint="@string/username"
         android:inputType="textPersonName"
@@ -21,8 +22,9 @@
 
     <EditText
         android:id="@+id/userSign"
-        android:layout_width="372dp"
-        android:layout_height="45dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
         android:layout_marginTop="6dp"
         android:hint="E-mail"
         android:inputType="textPersonName"
@@ -33,27 +35,43 @@
         android:autofillHints="emailAddress"/>
     <EditText
         android:id="@+id/passwordSign"
-        android:layout_width="372dp"
-        android:layout_height="45dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
         android:layout_marginTop="6dp"
         android:hint="@string/password_min_6_character"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userSign"
-        />
+        android:autofillHints="password" />
 
 
     <EditText
         android:id="@+id/petName"
-        android:layout_width="372dp"
-        android:layout_height="45dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
         android:layout_marginTop="6dp"
         android:hint="@string/your_pet_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordSign"
         android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/birthday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:hint="@string/birthday"
+        android:focusable="false"
+        android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/petName"
+        android:onClick="showDatePickerDialog" />
+
     <Button
         android:id="@+id/signUpButton"
         android:layout_width="371dp"
@@ -62,7 +80,7 @@
         android:layout_margin="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/petName" />
+        app:layout_constraintTop_toBottomOf="@+id/birthday" />
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
