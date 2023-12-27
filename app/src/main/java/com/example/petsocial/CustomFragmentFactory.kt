@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentFactory
 import com.bumptech.glide.RequestManager
 import com.example.petsocial.feature.SplashFragment
 import com.example.petsocial.feature.login.LoginFragment
+import com.example.petsocial.feature.post.PostFragment
 import com.example.petsocial.feature.profile.ProfileFragment
 import com.example.petsocial.feature.registiration.RegistirationFragment
 import javax.inject.Inject
@@ -18,6 +19,7 @@ class CustomFragmentFactory@Inject constructor(
             SplashFragment::class.java.name->SplashFragment()
             ProfileFragment::class.java.name -> ProfileFragment(glide)
             LoginFragment::class.java.name->LoginFragment()
+            PostFragment::class.java.name->PostFragment(glide)
             else -> super.instantiate(classLoader, className)
         }
     }
