@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface UserInfoDao {
@@ -13,4 +14,7 @@ interface UserInfoDao {
 
     @Query("SELECT * FROM users where  id like :userId")
     fun fetchLocalUser(userId : String): List<UserInfo>
+    @Update
+    fun updateLocalUser(userInfo: UserInfo)
+
 }
