@@ -13,7 +13,15 @@
     <string name="update">Update</string>
     <string name="logout">Logout</string>
     <string name="birthday">Birthday</string>
-
-
-
+    <string name="age_input">Enter Age</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="post_advert">Post Advert</string>
+    <string name="cat">Cat</string>
+    <string name="dog">Dog</string>
+    <string name="estrus_period">Estrus Period</string>
+    <string name="vac_info">Vaccation Information</string>
+    <string name="age_info">Age Information</string>
+    <string name="genius_info">Genius Information</string>
+    <string name="animal_type">Animal Type</string>
 </resources>

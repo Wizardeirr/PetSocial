@@ -10,5 +10,18 @@
     <string name="update">Güncelle</string>
     <string name="logout">Çıkış Yap</string>
     <string name="birthday">Doğum Tarihi</string>
+    <string name="age_input">Yaş Giriniz</string>
+    <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
+    <string name="post_advert">İlanı Yayınla</string>
+    <string name="cat">Kedi</string>
+    <string name="dog">Köpek</string>
+    <string name="estrus_period">Kızgınlık Dönemi</string>
+    <string name="vac_info">Aşı Bilgileri</string>
+    <string name="age_info">Yaş</string>
+    <string name="genius_info">Cins</string>
+    <string name="animal_type">Tür</string>
+
+
 
 </resources>
