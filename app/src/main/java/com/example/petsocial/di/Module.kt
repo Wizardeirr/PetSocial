@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.petsocial.R
 import com.example.petsocial.feature.login.LoginRepositoryImpl
+import com.example.petsocial.feature.post.PostRepositoryImpl
 import com.example.petsocial.feature.profile.ProfileRepositoryImpl
 import com.example.petsocial.feature.registiration.RegistirationRepositoryImpl
 import com.example.petsocial.room.UserDatabase
@@ -58,7 +59,11 @@ object Module {
     fun provideProfileRepository(userInfoDao: UserInfoDao) : ProfileRepositoryImpl {
         return ProfileRepositoryImpl(userInfoDao)
     }
-
+    @Provides
+    @Singleton
+    fun providePostRepository() : PostRepositoryImpl {
+        return PostRepositoryImpl()
+    }
 
     @Singleton
     @Provides
