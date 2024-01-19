@@ -160,15 +160,10 @@ class PostFragment @Inject constructor(private val glide: RequestManager)
                 R.id.catRadioButton -> {
                     showCatGeniusList()
                     showCatVacList()
-                    // Kedi seçildiğinde yapılacak işlemler
-
-                    // Örneğin: val selectedAnimalType = "Kedi"
                 }
                 R.id.dogRadioButton -> {
                     showDogGeniusList()
                     showDogVacList()
-                    // Köpek seçildiğinde yapılacak işlemler
-                    // Örneğin: val selectedAnimalType = "Köpek"
                 }
             }
         }
@@ -183,11 +178,9 @@ class PostFragment @Inject constructor(private val glide: RequestManager)
             when (checkedId) {
                 R.id.yesRadio -> {
                     // Kedi seçildiğinde yapılacak işlemler
-                    // Örneğin: val selectedAnimalType = "Kedi"
                 }
                 R.id.noRadio -> {
                     // Köpek seçildiğinde yapılacak işlemler
-                    // Örneğin: val selectedAnimalType = "Köpek"
                 }
             }
         }
