@@ -1,9 +1,8 @@
 package com.example.petsocial.feature.post
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -12,14 +11,14 @@ import javax.inject.Inject
 @HiltViewModel
 class PostViewModel @Inject constructor(
     private val postRepository: PostRepositoryImpl
-):ViewModel() {
+) : ViewModel() {
     private val _loadingState = MutableStateFlow<Boolean?>(null)
     val loadingState: StateFlow<Boolean?> get() = _loadingState
     private val _errorString = MutableStateFlow<String?>(null)
     val errorString: StateFlow<String?> get() = _errorString
 
-    private val _post = MutableStateFlow<Boolean?>(null)
-    val post: StateFlow<Boolean?> get() = _post
+    private val _postSuccess = MutableStateFlow<Boolean?>(null)
+    val postSuccess: StateFlow<Boolean?> get() = _postSuccess
 
     private val _dogVaccineOptions = MutableStateFlow<List<String>>(listOf())
     val dogVaccineOptions: StateFlow<List<String>> get() = _dogVaccineOptions
@@ -29,6 +28,7 @@ class PostViewModel @Inject constructor(
     val dogGeniusOptions: StateFlow<List<String>> get() = _dogGeniusOptions
     private val _catGeniusOptions = MutableStateFlow<List<String>>(listOf())
     val catGeniusOptions: StateFlow<List<String>> get() = _catGeniusOptions
+
     init {
         catGeniusOptions()
         vaccineCatSpinnerList()
@@ -36,15 +36,19 @@ class PostViewModel @Inject constructor(
         dogGeniusList()
     }
 
-    fun postSave(postData: PostData){
-        _loadingState.value=true
-        CoroutineScope(Dispatchers.IO).launch {
-            val createPost=postRepository.savePost(postData)
-            _post.value=createPost.data
+    fun postSave(postData: PostData) {
+        _loadingState.value = true
+        viewModelScope.launch {
+            val createPost = postRepository.savePost(postData)
+            _postSuccess.value = createPost.data
+            if (createPost.data==null){
+                _errorString.value=createPost.message
+            }
+            _loadingState.value = false
         }
     }
 
-    private fun catGeniusOptions(){
+    private fun catGeniusOptions() {
         val catsGeniusList = arrayListOf(
             "Tekir",
             "İran Kedisi",
@@ -66,7 +70,8 @@ class PostViewModel @Inject constructor(
         )
         _catGeniusOptions.value = catsGeniusList
     }
-    private fun dogGeniusList(){
+
+    private fun dogGeniusList() {
         val dogGeniusList = arrayListOf(
             "Pug",
             "Chihuahua",
@@ -85,7 +90,7 @@ class PostViewModel @Inject constructor(
         _dogGeniusOptions.value = dogGeniusList
     }
 
-    private fun vaccineCatSpinnerList(){
+    private fun vaccineCatSpinnerList() {
         val vaccinationList = arrayListOf(
             "İç-Dış Parazit",
             "Karma Aşı",
@@ -95,7 +100,8 @@ class PostViewModel @Inject constructor(
         )
         _catVaccineOptions.value = vaccinationList
     }
-    private fun vaccineDogSpinnerList(){
+
+    private fun vaccineDogSpinnerList() {
         val vaccinationList = arrayListOf(
             "İç-Dış Parazit",
             "Karma Aşı",
