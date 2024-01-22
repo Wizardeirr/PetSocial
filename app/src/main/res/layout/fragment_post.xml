@@ -155,6 +155,15 @@
                 android:text="@string/no"/>
 
         </RadioGroup>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Please Fill Title Of Post"
+            android:layout_margin="5dp"
+            android:id="@id/title"
+            app:layout_constraintTop_toBottomOf="@id/animalsEstrusPeriod">
+
+        </EditText>
 
         <Button
             android:id="@+id/createPostButton"
@@ -165,7 +174,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/animalsEstrusPeriod" />
+            app:layout_constraintTop_toBottomOf="@+id/title" />
 
         <ProgressBar
             android:id="@+id/progressBar"
