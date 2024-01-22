@@ -21,12 +21,14 @@
             android:padding="16dp">
 
             <ImageView
+                android:id="@+id/postRawImage"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
                 android:background="@drawable/ic_launcher_background"
                 />
 
             <TextView
+                android:id="@+id/postTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Başlık"
