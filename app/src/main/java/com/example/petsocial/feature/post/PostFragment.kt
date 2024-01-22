@@ -13,14 +13,17 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.RequestManager
 import com.example.petsocial.R
 import com.example.petsocial.common.BaseViewBindingFragment
 import com.example.petsocial.databinding.FragmentPostBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -50,47 +53,18 @@ class PostFragment @Inject constructor(private val glide: RequestManager)
         animalRadioGroupChange()
         estrusRadioGroupChange()
         binding.createPostButton.setOnClickListener {
+            initObserve()
             val ageInfo=binding.ageEditText.text.toString()
             val postData=PostData(picture,animalType,geniusInfo,ageInfo,vaccationInfo,animalEstrusPeriod)
-            viewModel.postSave(postData)
+            postSave(postData)
         }
     }
-
-    private fun takesPermAndPhoto(){
-        val register=registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                // There are no request codes
-                val data: Intent? = result.data
-                data?.data
-                glide.load(data?.data).into(binding.selectedImage)
-                println( data?.data)
-            }
-        }
-        val requestPermissionLauncher = registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { isGranted ->
-            if (isGranted) {
-                val gallery = Intent(MediaStore.ACTION_PICK_IMAGES)
-                gallery.setDataAndType(
-                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                    "image/*")
-                register.launch(gallery)
-                picture= gallery.data.toString()
-
-            } else {
-                Log.d("isGranted", "onViewCreated:  İzin hatası ")
-            }
-        }
-        binding.postPhotoAdd.setOnClickListener {
-            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
-                requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
-            } else if (Build.VERSION.SDK_INT == Build.VERSION_CODES.TIRAMISU) {
-                requestPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
-            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                requestPermissionLauncher.launch(Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED)
-            }
-        }
+    private fun postSave(postData:PostData){
+        viewModel.postSave(postData)
+        initObserve()
     }
+
+
     private fun showCatGeniusList(){
         lifecycleScope.launch(Dispatchers.Main){
             viewModel.catGeniusOptions.collect {
@@ -185,5 +159,74 @@ class PostFragment @Inject constructor(private val glide: RequestManager)
             }
         }
         return view
+    }
+    private fun takesPermAndPhoto(){
+        val register=registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                // There are no request codes
+                val data: Intent? = result.data
+                data?.data
+                glide.load(data?.data).into(binding.selectedImage)
+                picture= data?.data.toString()
+                println(data?.data)
+            }
+        }
+        val requestPermissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted ->
+            if (isGranted) {
+                val gallery = Intent(MediaStore.ACTION_PICK_IMAGES)
+                gallery.setDataAndType(
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                    "image/*")
+                register.launch(gallery)
+
+            } else {
+                Log.d("isGranted", "onViewCreated:  İzin hatası ")
+            }
+        }
+        binding.postPhotoAdd.setOnClickListener {
+            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
+                requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+            } else if (Build.VERSION.SDK_INT == Build.VERSION_CODES.TIRAMISU) {
+                requestPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                requestPermissionLauncher.launch(Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED)
+            }
+        }
+    }
+    fun initObserve(){
+        CoroutineScope(Dispatchers.Main).launch {
+            viewModel.postSuccess.collect{success->
+                success?.let {
+                    if (success){
+                        findNavController().popBackStack()
+                    }else{
+                        Toast.makeText(context, "Please Fill All Information Trust", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+        CoroutineScope(Dispatchers.Main).launch {
+            viewModel.loadingState.collect{loading->
+                loading?.let {
+                    if (loading){
+                        binding.constraintOfPost.visibility=View.INVISIBLE
+                        binding.progressBar.visibility=View.VISIBLE
+                    }else{
+                        binding.constraintOfPost.visibility=View.VISIBLE
+                        binding.progressBar.visibility=View.GONE
+                    }
+                }
+
+            }
+        }
+        CoroutineScope(Dispatchers.Main).launch {
+            viewModel.errorString.collect{error->
+                error?.let {
+                    Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
     }
