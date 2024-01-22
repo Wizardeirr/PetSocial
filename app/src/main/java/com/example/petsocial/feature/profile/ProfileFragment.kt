@@ -1,6 +1,7 @@
 package com.example.petsocial.feature.profile
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -27,6 +28,7 @@ class ProfileFragment @Inject constructor(private val glide: RequestManager) :
     BaseViewBindingFragment<FragmentProfileBinding>() {
 
     private val viewModel: ProfileViewModel by viewModels()
+    private var profileImageView:String?=null
 
     override fun inflateBinding(
         inflater: LayoutInflater,
@@ -60,17 +62,9 @@ class ProfileFragment @Inject constructor(private val glide: RequestManager) :
                 Log.d("isGranted", "onViewCreated:  İzin hatası ")
             }
         }
-        binding.imageAddButton.setOnClickListener {
-            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
-                requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
-            } else if (Build.VERSION.SDK_INT == Build.VERSION_CODES.TIRAMISU) {
-                requestPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
-            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                requestPermissionLauncher.launch(Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED)
-            }
-        }
-
         initObserve()
+        takesPermAndPhoto()
+
     }
 
     private fun initObserve() {
@@ -83,6 +77,7 @@ class ProfileFragment @Inject constructor(private val glide: RequestManager) :
                         username.setText(userInfo.userName)
                         userPetName.setText(userInfo.petName)
                         birthday.setText(userInfo.birthday)
+
                     }
                 }
             }
@@ -98,11 +93,45 @@ class ProfileFragment @Inject constructor(private val glide: RequestManager) :
                        username.setText(it.userName)
                        userPetName.setText(it.petName)
                        birthday.setText(it.birthday)
+                       it.userImage= profileImageView.toString()
                    }
                 }
             }
         }
 
     }
+    private fun takesPermAndPhoto(){
+        val register=registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                // There are no request codes
+                val data: Intent? = result.data
+                data?.data
+                glide.load(data?.data).into(binding.profileImageView)
+                profileImageView= data?.data.toString()
+            }
+        }
+        val requestPermissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted ->
+            if (isGranted) {
+                val gallery = Intent(MediaStore.ACTION_PICK_IMAGES)
+                gallery.setDataAndType(
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                    "image/*")
+                register.launch(gallery)
 
+            } else {
+                Log.d("isGranted", "onViewCreated:  İzin hatası ")
+            }
+        }
+        binding.imageAddButton.setOnClickListener {
+            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
+                requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+            } else if (Build.VERSION.SDK_INT == Build.VERSION_CODES.TIRAMISU) {
+                requestPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                requestPermissionLauncher.launch(Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED)
+            }
+        }
+    }
 }
