@@ -6,6 +6,7 @@ data class PostData (
     val animalGenius:String,
     val animalAge:String,
     val animalVacation:String,
-    val animalEstrusPeriod:String
+    val animalEstrusPeriod:String,
+    val postTitlte:String
     )
 

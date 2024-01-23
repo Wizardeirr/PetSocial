@@ -55,7 +55,8 @@ class PostFragment @Inject constructor(private val glide: RequestManager)
         binding.createPostButton.setOnClickListener {
             initObserve()
             val ageInfo=binding.ageEditText.text.toString()
-            val postData=PostData(picture,animalType,geniusInfo,ageInfo,vaccationInfo,animalEstrusPeriod)
+            val title=binding.title.text.toString()
+            val postData=PostData(picture,animalType,geniusInfo,ageInfo,vaccationInfo,animalEstrusPeriod,title)
             postSave(postData)
         }
     }
@@ -168,7 +169,6 @@ class PostFragment @Inject constructor(private val glide: RequestManager)
                 data?.data
                 glide.load(data?.data).into(binding.selectedImage)
                 picture= data?.data.toString()
-                println(data?.data)
             }
         }
         val requestPermissionLauncher = registerForActivityResult(
@@ -195,7 +195,7 @@ class PostFragment @Inject constructor(private val glide: RequestManager)
             }
         }
     }
-    fun initObserve(){
+    private fun initObserve(){
         CoroutineScope(Dispatchers.Main).launch {
             viewModel.postSuccess.collect{success->
                 success?.let {
