@@ -7,6 +7,7 @@ import androidx.room.Room
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.petsocial.R
+import com.example.petsocial.feature.home.HomeRecyclerAdapter
 import com.example.petsocial.feature.login.LoginRepositoryImpl
 import com.example.petsocial.feature.post.PostRepositoryImpl
 import com.example.petsocial.feature.profile.ProfileRepositoryImpl
@@ -72,5 +73,11 @@ object Module {
             RequestOptions().placeholder(R.drawable.ic_launcher_foreground)
                 .error(R.drawable.ic_launcher_foreground)
         )
+
+    @Provides
+    @Singleton
+    fun homeRecyclerAdapter(@ApplicationContext context: Context) : HomeRecyclerAdapter {
+        return HomeRecyclerAdapter(injectGlide(context))
+    }
 
 }
