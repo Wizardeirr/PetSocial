@@ -5,7 +5,6 @@ import androidx.fragment.app.FragmentFactory
 import com.bumptech.glide.RequestManager
 import com.example.petsocial.feature.SplashFragment
 import com.example.petsocial.feature.home.HomeFragment
-import com.example.petsocial.feature.home.HomeRecyclerAdapter
 import com.example.petsocial.feature.login.LoginFragment
 import com.example.petsocial.feature.post.PostFragment
 import com.example.petsocial.feature.profile.ProfileFragment
@@ -14,7 +13,6 @@ import javax.inject.Inject
 
 class CustomFragmentFactory@Inject constructor(
     private val glide:RequestManager,
-    private val homeRecyclerAdapter:HomeRecyclerAdapter
 ):FragmentFactory() {
     override fun instantiate(classLoader: ClassLoader, className: String): Fragment {
         return when(className){
