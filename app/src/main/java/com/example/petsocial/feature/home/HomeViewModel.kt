@@ -36,8 +36,8 @@ class HomeViewModel : ViewModel() {
                             var list = mutableListOf<HomeData>()
                             for (document in documents) {
                                 document.get("userProfileInfo")
-                                val title = document.get("postTitlte").toString()
-                                val image = document.get("postPhoto").toString()
+                                val title = document.get("userId").toString()
+                                val image = document.get("id").toString()
                                 val homeData = HomeData(title, image)
                                 list.add(homeData)
 
@@ -49,4 +49,5 @@ class HomeViewModel : ViewModel() {
                     }
             }
     }
+
 }
