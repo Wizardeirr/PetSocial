@@ -1,41 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="200dp"
-    android:layout_height="250dp"
-    android:columnCount="2"
-    android:rowCount="2"
-    android:layout_gravity="center">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:layout_marginBottom="16dp">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/postRawImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/ic_launcher_background"
+        android:layout_gravity="center_vertical" />
+
+    <TextView
+        android:id="@+id/postTitle"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1"
-        android:layout_gravity="fill">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <ImageView
-                android:id="@+id/postRawImage"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:background="@drawable/ic_launcher_background"
-                />
-
-            <TextView
-                android:id="@+id/postTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Başlık"
-                android:textSize="20sp"
-                android:layout_marginTop="2dp" />
-        </LinearLayout>
-    </LinearLayout>
-
-
-</GridLayout>
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Başlık"
+        android:textSize="20sp"
+        android:layout_marginStart="16dp" />
+</LinearLayout>
