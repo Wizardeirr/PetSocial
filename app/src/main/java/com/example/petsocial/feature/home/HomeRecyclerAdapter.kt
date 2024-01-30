@@ -1,35 +1,35 @@
 package com.example.petsocial.feature.home
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.example.petsocial.databinding.HomePostRawBinding
+import com.example.petsocial.feature.post.PostData
 import com.google.firebase.storage.FirebaseStorage
 import javax.inject.Inject
 
-class
-HomeRecyclerAdapter @Inject constructor(
+class HomeRecyclerAdapter @Inject constructor(
     val glide: RequestManager
 ) : RecyclerView.Adapter<HomeRecyclerAdapter.HomeAdapterVH>() {
     class HomeAdapterVH(binding: HomePostRawBinding) : RecyclerView.ViewHolder(binding.root)
 
-    private val diffUtil = object : DiffUtil.ItemCallback<HomeData>() {
-        override fun areItemsTheSame(oldItem: HomeData, newItem: HomeData): Boolean {
+    private val diffUtil = object : DiffUtil.ItemCallback<PostData>() {
+        override fun areItemsTheSame(oldItem: PostData, newItem: PostData): Boolean {
             return oldItem == newItem
         }
 
         @SuppressLint("DiffUtilEquals")
-        override fun areContentsTheSame(oldItem: HomeData, newItem: HomeData): Boolean {
+        override fun areContentsTheSame(oldItem: PostData, newItem: PostData): Boolean {
             return oldItem == newItem
         }
     }
     private val recyclerListDiffer = AsyncListDiffer(this@HomeRecyclerAdapter, diffUtil)
-    var posts: List<HomeData>
+    var posts: List<PostData>
         get() = recyclerListDiffer.currentList
         set(value) = recyclerListDiffer.submitList(value)
 
@@ -48,27 +48,26 @@ HomeRecyclerAdapter @Inject constructor(
         val postTitle = binding.postTitle
         val post = posts[position]
 
+
         binding.apply {
-            val storageReference = FirebaseStorage.getInstance().reference.child("posts").child(post.postImage)
-            storageReference.downloadUrl
-                .addOnSuccessListener { uri ->
-                    // URI başarıyla alındı, bu URI'yi kullanabilirsiniz
-                    val downloadUrl = uri.toString()
 
-                    // Şimdi bu URL'yi istediğiniz şekilde kullanabilirsiniz
-                    // Örneğin, Glide ile ImageView'e resmi yükleyebilirsiniz
-                    glide
-                        .load(downloadUrl)
-                        .into(imageView)
-                }
-                .addOnFailureListener { exception ->
-                    // URI alınırken bir hata oluştu
-                    Log.d("Storage", "Error getting download URL", exception)
-                }
-                glide.load(storageReference).into(imageView)
+            posts.forEach { postData ->
+                val storageRef = FirebaseStorage.getInstance().reference.child("posts").child(post.id)
+                storageRef.listAll()
+                    .addOnSuccessListener { listResult ->
+                        listResult.items.firstOrNull()?.downloadUrl
+                            ?.addOnSuccessListener { uri ->
+                                // Glide kütüphanesi ile ImageView'e dosyayı yükleme
+                                Glide.with(holder.itemView.context)
+                                    .load(uri)
+                                    .into(imageView)
+                            }
+                    }
+                    }
+            }
 
-            postTitle.text = post.title
+
+            postTitle.text = post.postTitle
         }
 
     }
-}
