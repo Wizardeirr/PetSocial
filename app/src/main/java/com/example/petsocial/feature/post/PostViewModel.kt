@@ -1,5 +1,6 @@
 package com.example.petsocial.feature.post
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +17,6 @@ class PostViewModel @Inject constructor(
     val loadingState: StateFlow<Boolean?> get() = _loadingState
     private val _errorString = MutableStateFlow<String?>(null)
     val errorString: StateFlow<String?> get() = _errorString
-
     private val _postSuccess = MutableStateFlow<Boolean?>(null)
     val postSuccess: StateFlow<Boolean?> get() = _postSuccess
 
@@ -36,10 +36,10 @@ class PostViewModel @Inject constructor(
         dogGeniusList()
     }
 
-    fun postSave(postData: PostData) {
+    fun postSave(postData: PostData, files : List<Uri>) {
         _loadingState.value = true
         viewModelScope.launch {
-            val createPost = postRepository.savePost(postData)
+            val createPost = postRepository.savePost(postData, files)
             _postSuccess.value = createPost.data
             if (createPost.data==null){
                 _errorString.value=createPost.message
