@@ -1,20 +1,25 @@
 package com.example.petsocial.feature.post
 
+import android.net.Uri
 import android.util.Log
 import com.example.petsocial.util.Resource
-import com.example.petsocial.util.Util.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import java.io.IOException
 import java.util.UUID
 
 class PostRepositoryImpl:PostRepository {
     var database: FirebaseFirestore = FirebaseFirestore.getInstance()
-    override fun savePost(postData: PostData): Resource<Boolean> {
+    var storageRef = Firebase.storage.reference;
+    override fun savePost(postData: PostData, files : List<Uri>): Resource<Boolean> {
         return try {
-            val result = auth.currentUser?.uid
             run {
-                if (result != null) {
-                    database.collection("posts/${result}/${UUID.randomUUID()}").document().set(postData)
+
+                database.collection("posts").document(postData.id).set(postData)
+                files.forEach {
+                    val id = UUID.randomUUID()
+                    storageRef.child("posts").child(postData.id).child(id.toString()).putFile(it)
                 }
                 Resource.success(true)
             }
