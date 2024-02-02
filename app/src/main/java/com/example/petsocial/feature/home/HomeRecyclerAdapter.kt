@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.example.petsocial.databinding.HomePostRawBinding
 import com.example.petsocial.feature.post.PostData
@@ -14,9 +13,18 @@ import com.google.firebase.storage.FirebaseStorage
 import javax.inject.Inject
 
 class HomeRecyclerAdapter @Inject constructor(
-    val glide: RequestManager
+    val glide: RequestManager,private val onItemClickListener: (PostData) -> Unit
 ) : RecyclerView.Adapter<HomeRecyclerAdapter.HomeAdapterVH>() {
-    class HomeAdapterVH(binding: HomePostRawBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class HomeAdapterVH(binding: HomePostRawBinding) : RecyclerView.ViewHolder(binding.root){
+        init {
+            binding.root.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onItemClickListener(posts[position])
+                }
+            }
+        }
+    }
 
     private val diffUtil = object : DiffUtil.ItemCallback<PostData>() {
         override fun areItemsTheSame(oldItem: PostData, newItem: PostData): Boolean {
@@ -50,7 +58,6 @@ class HomeRecyclerAdapter @Inject constructor(
 
 
         binding.apply {
-
             posts.forEach { postData ->
                 val storageRef = FirebaseStorage.getInstance().reference.child("posts").child(post.id)
                 storageRef.listAll()
@@ -58,7 +65,7 @@ class HomeRecyclerAdapter @Inject constructor(
                         listResult.items.firstOrNull()?.downloadUrl
                             ?.addOnSuccessListener { uri ->
                                 // Glide kütüphanesi ile ImageView'e dosyayı yükleme
-                                Glide.with(holder.itemView.context)
+                                glide
                                     .load(uri)
                                     .into(imageView)
                             }
