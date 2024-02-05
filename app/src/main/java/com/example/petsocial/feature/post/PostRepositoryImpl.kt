@@ -11,11 +11,10 @@ import java.util.UUID
 
 class PostRepositoryImpl:PostRepository {
     var database: FirebaseFirestore = FirebaseFirestore.getInstance()
-    var storageRef = Firebase.storage.reference;
+    var storageRef = Firebase.storage.reference
     override fun savePost(postData: PostData, files : List<Uri>): Resource<Boolean> {
         return try {
             run {
-
                 database.collection("posts").document(postData.id).set(postData)
                 files.forEach {
                     val id = UUID.randomUUID()

@@ -2,7 +2,7 @@ package com.example.petsocial.feature.post
 
 
 data class PostData(
-    val id: String,
+    var id: String,
     val userId: String,
     val animalType: String,
     val animalGenius: String,
