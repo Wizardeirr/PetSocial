@@ -9,8 +9,6 @@ import kotlinx.coroutines.flow.StateFlow
 
 class HomeViewModel : ViewModel() {
     var database: FirebaseFirestore = FirebaseFirestore.getInstance()
-
-
     private val _postList = MutableStateFlow<MutableList<PostData>>(mutableListOf())
     val postList: StateFlow<MutableList<PostData>> get() = _postList
 
@@ -21,12 +19,10 @@ class HomeViewModel : ViewModel() {
     private val _postSuccess = MutableStateFlow<Boolean?>(null)
     val postSuccess: StateFlow<Boolean?> get() = _postSuccess
 
-    fun takePosts() {
-        _loadingState.value = true
 
-    }
 
     fun getPostsData() {
+        _loadingState.value = true
         database.collection("posts")
             .addSnapshotListener { value, error ->
                 if (error != null) {
@@ -35,7 +31,6 @@ class HomeViewModel : ViewModel() {
                     if (value != null) {
                         if (!value.isEmpty) {
                             val documents = value.documents
-
                             val list = mutableListOf<PostData>()
                             for (document in documents) {
                                 document.get("userProfileInfo")
@@ -60,10 +55,10 @@ class HomeViewModel : ViewModel() {
                                     postTitle
                                 )
                                 list.add(postData)
-
                             }
 
                             _postList.value = list
+                            _loadingState.value=false
 
                         }
                     }

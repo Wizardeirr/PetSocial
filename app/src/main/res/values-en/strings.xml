@@ -24,4 +24,9 @@
     <string name="age_info">Age Information</string>
     <string name="genius_info">Genius Information</string>
     <string name="animal_type">Animal Type</string>
+    <string name="block_user">Block User</string>
+    <string name="contact_user">Get Contact</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="report_user">Report User</string>
+
 </resources>

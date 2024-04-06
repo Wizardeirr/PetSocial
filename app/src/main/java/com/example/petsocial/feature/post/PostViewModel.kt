@@ -3,6 +3,10 @@ package com.example.petsocial.feature.post
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.petsocial.common.Constants.CAT_GENIUS_OPTIONS
+import com.example.petsocial.common.Constants.CAT_VACCINE_OPTIONS
+import com.example.petsocial.common.Constants.DOG_GENIUS_OPTIONS
+import com.example.petsocial.common.Constants.DOG_VACCINE_OPTIONS
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -49,68 +53,19 @@ class PostViewModel @Inject constructor(
     }
 
     private fun catGeniusOptions() {
-        val catsGeniusList = arrayListOf(
-            "Tekir",
-            "İran Kedisi",
-            "Sarman",
-            "Smokin",
-            "Van Kedisi",
-            "Ankara Kedisi",
-            "İran Kedisi",
-            "Bombay Kedisi",
-            "American Shorthair",
-            "Maine Coon",
-            "Scottish Fold",
-            "Bengal",
-            "Sphynx",
-            "Rus Mavisi",
-            "British Shorthair",
-            "Abyssinian",
-            "Siamese"
-        )
-        _catGeniusOptions.value = catsGeniusList
+        _catGeniusOptions.value = CAT_GENIUS_OPTIONS
     }
 
     private fun dogGeniusList() {
-        val dogGeniusList = arrayListOf(
-            "Pug",
-            "Chihuahua",
-            "Çov-çov",
-            "Altın Retriever",
-            "Labrador Retriever",
-            "Fransız Bulldog",
-            "Sibirya Huskisi",
-            "Pomeranian",
-            "Cavalier King Charles Spaniel",
-            "Yorkshire Terrier",
-            "German Shepherd",
-            "Dachshund",
-            "Bulldog"
-        )
-        _dogGeniusOptions.value = dogGeniusList
+        _dogGeniusOptions.value = DOG_GENIUS_OPTIONS
     }
 
     private fun vaccineCatSpinnerList() {
-        val vaccinationList = arrayListOf(
-            "İç-Dış Parazit",
-            "Karma Aşı",
-            "Lösemi",
-            "Mantar",
-            "Kuduz Aşısı",
-        )
-        _catVaccineOptions.value = vaccinationList
+        _catVaccineOptions.value = CAT_VACCINE_OPTIONS
     }
 
     private fun vaccineDogSpinnerList() {
-        val vaccinationList = arrayListOf(
-            "İç-Dış Parazit",
-            "Karma Aşı",
-            "Lösemi",
-            "Mantar",
-            "Kuduz Aşısı",
-            "Bronşit Aşısı",
-            "Corona Aşısı",
-        )
-        _dogVaccineOptions.value = vaccinationList
+
+        _dogVaccineOptions.value = DOG_VACCINE_OPTIONS
     }
 }

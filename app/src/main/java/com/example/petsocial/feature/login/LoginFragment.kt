@@ -2,6 +2,7 @@ package com.example.petsocial.feature.login
 
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.petsocial.R
 import com.example.petsocial.common.BaseViewBindingFragment
+import com.example.petsocial.common.Constants.THREE_MS
 import com.example.petsocial.databinding.FragmentLoginBinding
 import com.example.petsocial.util.Util
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,11 +37,11 @@ class LoginFragment : BaseViewBindingFragment<FragmentLoginBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Handler().postDelayed({
+        Handler(Looper.getMainLooper()).postDelayed({
             if (Util.auth.currentUser != null) {
                 findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
             }
-        }, 3000)
+        }, THREE_MS)
         binding.loginButton.setOnClickListener{
             with(binding){
                 viewModel.loginUser(userLog.text.toString(), passwordLog.text.toString())

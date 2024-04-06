@@ -5,10 +5,13 @@ import androidx.core.view.MenuHost
 import androidx.fragment.app.FragmentActivity
 import androidx.room.Room
 import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
 import com.bumptech.glide.request.RequestOptions
 import com.example.petsocial.R
+import com.example.petsocial.feature.home.HomeRecyclerAdapter
 import com.example.petsocial.feature.login.LoginRepositoryImpl
 import com.example.petsocial.feature.post.PostRepositoryImpl
+import com.example.petsocial.feature.postdetail.PostDetailRepositoryImpl
 import com.example.petsocial.feature.profile.ProfileRepositoryImpl
 import com.example.petsocial.feature.registiration.RegistirationRepositoryImpl
 import com.example.petsocial.room.UserDatabase
@@ -38,31 +41,36 @@ object Module {
 
     @Provides
     @Singleton
-    fun provideMenuHost(activity: FragmentActivity): MenuHost {
+    fun menuHost(activity: FragmentActivity): MenuHost {
         return activity
     }
 
     @Provides
     @Singleton
-    fun provideSignUpRepository(): RegistirationRepositoryImpl {
+    fun signUpRepository(): RegistirationRepositoryImpl {
         return RegistirationRepositoryImpl()
     }
 
     @Provides
     @Singleton
-    fun provideSignInRepository(userInfoDao: UserInfoDao): LoginRepositoryImpl {
+    fun registerRepository(userInfoDao: UserInfoDao): LoginRepositoryImpl {
         return LoginRepositoryImpl(userInfoDao)
     }
 
     @Provides
     @Singleton
-    fun provideProfileRepository(userInfoDao: UserInfoDao) : ProfileRepositoryImpl {
+    fun profileRepository(userInfoDao: UserInfoDao) : ProfileRepositoryImpl {
         return ProfileRepositoryImpl(userInfoDao)
     }
     @Provides
     @Singleton
-    fun providePostRepository() : PostRepositoryImpl {
+    fun postRepository() : PostRepositoryImpl {
         return PostRepositoryImpl()
+    }
+    @Provides
+    @Singleton
+    fun postDetailRepository(glide:RequestManager) : PostDetailRepositoryImpl {
+        return PostDetailRepositoryImpl(glide)
     }
 
     @Singleton
@@ -72,5 +80,7 @@ object Module {
             RequestOptions().placeholder(R.drawable.logo)
                 .error(R.drawable.logo)
         )
-
-}
+    @Provides
+    @Singleton
+    fun provideAdapter(glide:RequestManager): HomeRecyclerAdapter = HomeRecyclerAdapter(glide)
+  }
