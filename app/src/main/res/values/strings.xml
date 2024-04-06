@@ -4,8 +4,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="username">Username</string>
     <string name="password_min_6_character">Password(min 6 character)</string>
-    <string name="sign_up">SIGN UP</string>
-    <string name="your_pet_name">Your Pet Name</string>
+    <string name="sign_up">Kayıt Ol</string>
+    <string name="your_pet_name">Evcil Hayvanınızın İsmi</string>
     <string name="for_your_pet_s_social_life">For Your Pet\'s Social Life</string>
     <string name="update">Güncelle</string>
     <string name="logout">Çıkış Yap</string>
@@ -21,7 +21,10 @@
     <string name="age_info">Yaş</string>
     <string name="genius_info">Cins</string>
     <string name="animal_type">Tür</string>
-
+    <string name="contact_user">İletişime Geç</string>
+    <string name="profile_picture">Profil Resmi</string>
+    <string name="report_user">Kullanıcıyı Bildir</string>
+    <string name="block_user">Kullanıcıyı Engelle</string>
 
 
 </resources>

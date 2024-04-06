@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.petsocial.R
 import com.example.petsocial.common.BaseViewBindingFragment
 import com.example.petsocial.databinding.FragmentHomeBinding
@@ -31,28 +31,20 @@ class HomeFragment : BaseViewBindingFragment<FragmentHomeBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_postFragment)
         }
         binding.usersHomeFragmentRecycler.adapter = homeRecyclerAdapter
-        binding.usersHomeFragmentRecycler.layoutManager = LinearLayoutManager(requireContext())
-
-
-        initObserv()
-
+        binding.usersHomeFragmentRecycler.layoutManager = GridLayoutManager(requireContext(), 2)
+        initObserve()
         viewModel.getPostsData()
-
-
     }
-
-    private fun initObserv() {
+    private fun initObserve() {
         CoroutineScope(Dispatchers.Main).launch {
-
             viewModel.postList.collect {
                 homeRecyclerAdapter.posts = it
             }
         }
     }
-
-
 }

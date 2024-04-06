@@ -1,6 +1,7 @@
 package com.example.petsocial
 
 import android.os.Bundle
+import android.view.Display.FLAG_SECURE
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
@@ -19,12 +20,12 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var fragmentFactory: CustomFragmentFactory
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         supportFragmentManager.fragmentFactory=fragmentFactory
         setContentView(binding.root)
+        window.setFlags(FLAG_SECURE, FLAG_SECURE)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
 
@@ -39,10 +40,7 @@ class MainActivity : AppCompatActivity() {
                     navHostFragment.findNavController().navigate(R.id.splashFragment)
                 }
             }
-
-
         Util.auth.addAuthStateListener(authStateListener)
-
         navHostFragment.navController.addOnDestinationChangedListener{_, destination, _ ->
 
             when(destination.id){
@@ -61,16 +59,16 @@ class MainActivity : AppCompatActivity() {
                 R.id.postFragment->{
                     binding.bottomNavigation.visibility=View.GONE
                 }
+                R.id.postDetailFragment->{
+                    binding.bottomNavigation.visibility=View.GONE
+                }
+                R.id.privateMessageFragment->{
+                    binding.bottomNavigation.visibility=View.GONE
+                }
                 else -> {
                 binding.bottomNavigation.visibility = View.VISIBLE
                 }
-
             }
-
         }
-
-
-
-
     }
 }

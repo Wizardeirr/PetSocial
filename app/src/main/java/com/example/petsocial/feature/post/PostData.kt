@@ -1,6 +1,9 @@
 package com.example.petsocial.feature.post
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class PostData(
     var id: String,
     val userId: String,
@@ -10,5 +13,5 @@ data class PostData(
     val animalVacation: String,
     val animalEstrusPeriod: String,
     val postTitle: String,
-)
+):Parcelable
 

@@ -105,7 +105,6 @@ class RegistirationFragment : BaseViewBindingFragment<FragmentRegistirationBindi
             }
         }
         CoroutineScope(Dispatchers.IO).launch {
-
             viewModel.loadingState.collect { loading ->
                 withContext(Dispatchers.Main) {
                     loading?.let {

@@ -9,6 +9,7 @@ import com.example.petsocial.databinding.FragmentMessagesBinding
 
 
 class MessagesFragment : BaseViewBindingFragment<FragmentMessagesBinding>() {
+
     override fun inflateBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -17,6 +18,8 @@ class MessagesFragment : BaseViewBindingFragment<FragmentMessagesBinding>() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
     }
+
 }
